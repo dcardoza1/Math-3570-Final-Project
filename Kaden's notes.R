@@ -1,8 +1,18 @@
 library(gifski)
+library(datasets)
+library(gganimate)
+library(ggplot2)
+library(graphics)
+library(grDevices)
+library(dplyr)
+library(magrittr)
+library(readr)
+library(ggthemes)
+
 druggies <- readr::read_csv("./drugs.csv")
 
-d <- druggies %>% 
-  filter(State %in% c("Oregon", "Wisconsin", "Illinois")) 
+d <- druggies %>%
+  filter(State %in% c("Oregon", "Wisconsin", "Illinois"))
 
 d <- d %>%
   ggplot(mapping = aes(x = Year, 
@@ -10,16 +20,55 @@ d <- d %>%
                        color = State)) +
   geom_point()
 
-  
+ 
 d.animation <- d +
   transition_time(Year)+
   labs(title = "PEE PEE? MORE LIKE POO POO", subtitle = "Year:  {frame_time}") + 
-  shadow_trail()
-d.animation
+  shadow_wake(wake_length = 0.5)
+#d.animation
+
+#transition_reveal example
+players <- read_csv("./Player Per Game.csv")
+
+scorers <- players %>%
+  filter(pts_per_game > 30)
+scorers
+
+scorers <- scorers %>%
+  ggplot(mapping = aes(x = season, y = pts_per_game, color = player))+
+  geom_point()+
+  labs(title = "30+ PPG Scorers 1947-2021", y = "Points Per Game", x = "Season", color = "Player")+
+  coord_cartesian(ylim = c(30, 40))+
+  theme_hc()
+
+scorers.animation <- scorers +
+  transition_reveal(season)+
+  shadow_wake(wake_length = 1.5)
+#scorers.animation
+
+#transition_layer example
+cars <- mtcars %>%
+  ggplot(mapping = aes(x = mpg, y = hp, color = cyl))+
+  geom_point()
 
 
+cars.animation <- cars +
+  transition_filter(
+    filter_length = 1.5,
+    Efficient = mpg > 22,
+    Powerful = disp > 250,
+    Fast = qsec < 16,
+    Automatic = am == 0,
+    Manual = am == 1,
+    wrap = FALSE
+  )+
+  ggtitle(
+    'Filter: {closest_filter}',
+    subtitle = '{closest_expression}')
+    
+#cars.animation
 
-# +
+ #+
 #   geom_point() + 
 #   geom_line() + 
 #   geom_line(aes(y = Rates))
