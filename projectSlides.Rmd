@@ -9,6 +9,31 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+
+# Package names
+packages <- c("knitr", "gifski", "gganimate", "ggplot2", "graphics",
+              "grDevices", "dplyr", "magrittr", "readr", "ggthemes", 
+              "tidyverse", "transformr")
+
+# Install packages not yet installed
+installed_packages <- packages %in% rownames(installed.packages())
+if (any(installed_packages == FALSE)) {
+  install.packages(packages[!installed_packages])
+}
+
+# Packages loading
+invisible(lapply(packages, library, character.only = TRUE))
+
+library(gifski)
+library(datasets)
+library(gganimate)
+library(ggplot2)
+library(graphics)
+library(grDevices)
+library(dplyr)
+library(magrittr)
+library(readr)
+library(ggthemes)
 ```
 
 ## What is gganimate?
@@ -24,7 +49,21 @@ knitr::include_graphics("gganim_plot0099.png")
 
 ## Why use gganimate?  
 - Offers simple and easy to implement functions for adding animations
-- Can help with presentation of information
+- Can improve visualization of change in data
+- Adds to presentation of data
+```{r out.width = "100%",out.height = "100%",echo = FALSE, fig.align='center'}
+#Image of slide 1
+knitr::include_graphics("./images/data-science-communicate.png")
+```
+
+
+## gganimate Basics & Examples
+- gganimate is primarily applied to ggplot objects by specifying transitions to use  
+- There are 4 primary transition functions that will be covered:  
+  - transition_time()  
+  - transition_reveal()  
+  - transition_filter()  
+  - transition_states()  
 
 ---  
 This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
@@ -49,3 +88,26 @@ summary(cars)
 plot(pressure)
 ```
 
+## Transition States
+- transition_states() is useful for non-time related transitions between data
+- Also can make use of other fields or options to improve animation
+
+``` {r echo=FALSE,message=FALSE}
+#Import data of BJT simulation (and remove unwanted columns) 
+bjt_df <- readr::read_csv("./bjtData.csv")
+bjt_df <- select(bjt_df, Ib_mA, Vce_V, Ic_A)
+
+#bjt_df$Ib_mA %<>% as.character
+#bjt_df
+
+#Create ggplot of data
+bjt_plt <- bjt_df %>%
+  ggplot(mapping = aes(x = Vce_V, 
+                       y = Ic_A,
+                       color = Ib_mA)) +
+  geom_line() +
+  theme(legend.position = "none") +
+  labs(x = "Voltage Vce (V)",
+       y = "Current Ic (A)")
+bjt_plt
+```
