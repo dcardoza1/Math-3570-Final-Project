@@ -2,9 +2,7 @@
 title: "Entering the gganimate-trix"
 author: "MATH 3570 Team 5"
 date: '2022-16-05'
-output: 
-  beamer_presentation:
-    theme: "Antibes"
+output: ioslides_presentation
 ---
 
 ```{r setup, include=FALSE}
@@ -92,22 +90,7 @@ plot(pressure)
 - transition_states() is useful for non-time related transitions between data
 - Also can make use of other fields or options to improve animation
 
-``` {r echo=FALSE,message=FALSE}
-#Import data of BJT simulation (and remove unwanted columns) 
-bjt_df <- readr::read_csv("./bjtData.csv")
-bjt_df <- select(bjt_df, Ib_mA, Vce_V, Ic_A)
+```{r cho=FALSE,out.width="50%",out.height="50%"}
+knitr::include_graphics("drug_labs_end.gif")
 
-#bjt_df$Ib_mA %<>% as.character
-#bjt_df
-
-#Create ggplot of data
-bjt_plt <- bjt_df %>%
-  ggplot(mapping = aes(x = Vce_V, 
-                       y = Ic_A,
-                       color = Ib_mA)) +
-  geom_line() +
-  theme(legend.position = "none") +
-  labs(x = "Voltage Vce (V)",
-       y = "Current Ic (A)")
-bjt_plt
 ```
