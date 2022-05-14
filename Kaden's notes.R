@@ -120,6 +120,7 @@ bjt_animplt <- bjt_plt +
 #Show the animation
 #bjt_animplt
 
+#anim_save("bjtplot.gif", bjt_animplt)
 
  #+
 #   geom_point() + 

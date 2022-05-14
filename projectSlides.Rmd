@@ -1,19 +1,32 @@
 ---
-title: "gganimate"
+title: "Entering the gganimate-trix"
 author: "MATH 3570 Team 5"
-date: '2022-05-05'
+date: '2022-16-05'
 output: 
-  ioslides_presentation:
-  transition: faster
-  incremental: true
+  beamer_presentation:
+    theme: "Antibes"
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## R Markdown
+## What is gganimate?
+- Extension package used with ggplot2  
+  
+- Used to make animations using ggplots  
+  - Can also save rendered plots as gifs  
 
+```{r out.width = "200%",out.height = "60%",echo = FALSE, fig.align='center'}
+#Image of slide 1
+knitr::include_graphics("gganim_plot0099.png")
+```
+
+## Why use gganimate?  
+- Offers simple and easy to implement functions for adding animations
+- Can help with presentation of information
+
+---  
 This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
