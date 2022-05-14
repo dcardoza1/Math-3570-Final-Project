@@ -35,10 +35,13 @@ d <- d %>%
   geom_point()
  
 d.animation <- d +
-  transition_time(Year)+
-  labs(title = "PEE PEE? MORE LIKE POO POO", subtitle = "Year:  {frame_time}") + 
-  shadow_wake(wake_length = 0.5)
+  transition_time(Year) + 
+  labs(title = "New Teen Marijuana Users", subtitle = "Year: transition_time(as.integer(year))", x = 'Year') +
+  shadow_trail(distance = 0.01)
 #d.animation
+animate(plot = d.animation, end_pause = 30)
+anim_save("drug_labs_end.gif", d.animation)
+
 
 #transition_reveal example
 players <- read_csv("./Player Per Game.csv")
@@ -51,13 +54,15 @@ scorers <- scorers %>%
   ggplot(mapping = aes(x = season, y = pts_per_game, color = player))+
   geom_point()+
   labs(title = "30+ PPG Scorers 1947-2021", y = "Points Per Game", x = "Season", color = "Player")+
-  coord_cartesian(ylim = c(30, 40))+
-  theme_hc()
-
-scorers.animation <- scorers +
+  coord_cartesian(ylim = c(30, 40)) +
   transition_reveal(season)+
   shadow_wake(wake_length = 1.5)
-#scorers.animation
+
+
+
+
+animate(plot = scorers, width = 1000)
+
 
 #transition_layer example
 cars <- mtcars %>%
