@@ -2,7 +2,10 @@
 title: "gganimate"
 author: "MATH 3570 Team 5"
 date: '2022-05-05'
-output: ioslides_presentation
+output: 
+  ioslides_presentation:
+  transition: faster
+  incremental: true
 ---
 
 ```{r setup, include=FALSE}
