@@ -8,30 +8,6 @@ output: ioslides_presentation
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 
-# Package names
-packages <- c("knitr", "gifski", "gganimate", "ggplot2", "graphics",
-              "grDevices", "dplyr", "magrittr", "readr", "ggthemes", 
-              "tidyverse", "transformr")
-
-# Install packages not yet installed
-installed_packages <- packages %in% rownames(installed.packages())
-if (any(installed_packages == FALSE)) {
-  install.packages(packages[!installed_packages])
-}
-
-# Packages loading
-invisible(lapply(packages, library, character.only = TRUE))
-
-library(gifski)
-library(datasets)
-library(gganimate)
-library(ggplot2)
-library(graphics)
-library(grDevices)
-library(dplyr)
-library(magrittr)
-library(readr)
-library(ggthemes)
 ```
 
 ## What is gganimate?
