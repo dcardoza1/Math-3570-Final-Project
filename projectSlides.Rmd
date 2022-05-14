@@ -7,7 +7,6 @@ output: ioslides_presentation
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
-
 ```
 
 ## What is gganimate?
@@ -68,5 +67,4 @@ plot(pressure)
 
 ```{r cho=FALSE,out.width="50%",out.height="50%"}
 knitr::include_graphics("drug_labs_end.gif")
-
 ```
