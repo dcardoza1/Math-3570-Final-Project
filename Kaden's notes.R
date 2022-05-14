@@ -1,3 +1,17 @@
+# Package names
+packages <- c("knitr", "gifski", "gganimate", "ggplot2", "graphics",
+              "grDevices", "dplyr", "magrittr", "readr", "ggthemes", 
+              "tidyverse", "transformr")
+
+# Install packages not yet installed
+installed_packages <- packages %in% rownames(installed.packages())
+if (any(installed_packages == FALSE)) {
+  install.packages(packages[!installed_packages])
+}
+
+# Packages loading
+invisible(lapply(packages, library, character.only = TRUE))
+
 library(gifski)
 library(datasets)
 library(gganimate)
@@ -19,7 +33,6 @@ d <- d %>%
                        y = `Rates.Marijuana.New Users.12-17`,
                        color = State)) +
   geom_point()
-
  
 d.animation <- d +
   transition_time(Year) + 
@@ -72,6 +85,47 @@ cars.animation <- cars +
     subtitle = '{closest_expression}')
     
 #cars.animation
+
+#Andrew Simon Transition states example
+#Import data of BJT simulation (and remove unwanted columns) 
+bjt_df <- readr::read_csv("./bjtData.csv")
+bjt_df <- select(bjt_df, Ib_mA, Vce_V, Ic_A)
+
+#bjt_df$Ib_mA %<>% as.character
+bjt_df
+
+#Create ggplot of data
+bjt_plt <- bjt_df %>%
+  ggplot(mapping = aes(x = Vce_V, 
+                       y = Ic_A,
+                       color = Ib_mA)) +
+  geom_line() +
+  theme(legend.position = "none") +
+  labs(x = "Voltage Vce (V)",
+       y = "Current Ic (A)")
+#bjt_plt
+
+#Apply transition time animation to show change in output according to base current
+#bjt_animplt <- bjt_plt +
+#                     transition_time(Ib_mA) +
+#                     labs(title = "I-V Characteristics of BJT Component",
+#                          subtitle = "Base Current Ib = {frame_time} mA") +
+#                     shadow_mark(alpha = 0.5)
+
+#Apply transition state animation to show change in output according to base current
+bjt_animplt <- bjt_plt +
+  transition_states(Ib_mA,
+                    transition_length = 0.25,
+                    state_length = 1,
+                    wrap = FALSE) +
+  labs(title = "I-V Characteristics of BJT Component",
+       subtitle = "Base Current Ib = {closest_state} mA") +
+  shadow_mark(alpha = 0.5)
+
+#Show the animation
+#bjt_animplt
+
+#anim_save("bjtplot.gif", bjt_animplt)
 
  #+
 #   geom_point() + 
