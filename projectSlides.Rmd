@@ -1,7 +1,7 @@
 ---
-title: "Entering the gganimate-trix"
+title: "Enter the gganimate-trix"
 author: "MATH 3570 Team 5"
-date: '2022-16-05'
+date: '2022-05-16'
 output: ioslides_presentation
 ---
 
@@ -15,9 +15,9 @@ knitr::opts_chunk$set(echo = FALSE)
 - Used to make animations using ggplots  
   - Can also save rendered plots as gifs  
 
-```{r out.width = "200%",out.height = "60%",echo = FALSE, fig.align='center'}
+```{r out.width = "30%",out.height = "30%",echo = FALSE, fig.align='center'}
 #Image of slide 1
-knitr::include_graphics("gganim_plot0099.png")
+knitr::include_graphics("./images/gganimate_logo_small.png")
 ```
 
 ## Why use gganimate?  
@@ -38,33 +38,43 @@ knitr::include_graphics("./images/data-science-communicate.png")
   - transition_filter()  
   - transition_states()  
 
----  
-This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
-
-## Slide with Bullets
-
-- Bullet 1
-- Bullet 2
-- Bullet 3
-
-## Slide with R Output
-
-```{r cars, echo = TRUE}
-summary(cars)
-```
-
-## Slide with Plot
-
-```{r pressure}
-plot(pressure)
-```
-
 ## Transition States
 - transition_states() is useful for non-time related transitions between data
 - Also can make use of other fields or options to improve animation
+  
+So, let's look at an example
 
-```{r cho=FALSE,out.width="50%",out.height="50%"}
-knitr::include_graphics("drug_labs_end.gif")
+## Transition States Example(1)
+- Suppose we look at some simulated data of a BJT transistor circuit component:  
+- The output behavior of the component generally looked at is voltage vs current  
+- In this case, that would be Vce vs. Ic
+
+```{r echo=FALSE,out.width="45%",out.height="45%",fig.align='center'}
+knitr::include_graphics("./images/bjtdata_codechunk.PNG")
+```
+
+## Transition States Example(2)
+- The output function also depends on an input current Ib, however, and varies accordingly  
+- As such, we get the following ggplot
+
+```{r eval=TRUE,echo=FALSE,out.width="50%",out.height="100%",fig.align='default',fig.show='hold'}
+knitr::include_graphics("./images/bjtggplot.PNG")
+knitr::include_graphics("./images/ggplot_codechunk.PNG")
+```
+
+## Transition States Example(3)
+- Showing the data in this format indicates the behavior, but we can improve it is communicated
+- Applying state transitions to the Ib value, the behavior can then be made into the following animated plot
+```{r eval=TRUE,echo=FALSE,out.width="50%",out.height="100%",fig.align='default',fig.show='hold'}
+knitr::include_graphics("./images/anim_bjt1.gif")
+knitr::include_graphics("./images/transitionstate_codechunk1.PNG")
+```
+
+## Transition States Example(4)
+- This better indicates how the function output behavior increases as Ib increases
+- Furthermore, making use of shadow_mark(), we can then add onto the existing plot
+  - shadow_mark() is similar to shadow_trail(), however it leaves a mark at the data state
+```{r eval=TRUE,echo=FALSE,out.width="50%",out.height="100%",fig.align='default',fig.show='hold'}
+knitr::include_graphics("./images/anim_bjt2.gif")
+knitr::include_graphics("./images/transitionstate_codechunk2.PNG")
 ```
