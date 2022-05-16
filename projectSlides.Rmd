@@ -82,7 +82,7 @@ knitr::include_graphics("./drugs_shadow_code.png")
 - The plot on the left shows all the seasons in NBA history in which a player averaged at least 30 points per game
 - On the right the plot is animated using `transition_time()`
 
-```{r, eval = TRUE, echo=FALSE, fig.show='hold', out.height="50%", out.width="50%"}
+```{r, eval = TRUE, echo=FALSE, fig.show='hold', out.height="48%", out.width="48%"}
 knitr::include_graphics("scorers_plotactual.png")
 knitr::include_graphics("scorers_time.gif")
 knitr::include_graphics("scorers_timecode.png")
@@ -114,7 +114,7 @@ knitr::include_graphics("scorers_anim2.png")
 ## `shadow_wake()`
 - Here are the animations side by side
 
-```{r, eval=TRUE,echo=FALSE, fig.show='hold', out.height="50%", out.width="50%"}
+```{r, eval=TRUE,echo=FALSE, fig.show='hold', out.height="47%", out.width="47%"}
 knitr::include_graphics("scorers_nowake.gif")
 knitr::include_graphics("scorers_final.gif")
 ```
