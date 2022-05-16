@@ -208,8 +208,8 @@ knitr::include_graphics("mtcars.gif")
 
 ## `With Animate and Labs` {.build}
 - Now lets utilize some extra functions we learned
-- Animate() allows us to change things about the animated plot like hight, width and fps
-- Labs() allows us to put in a good title
+- `Animate()` allows us to change things about the animated plot like hight, width and fps
+- `Labs()` allows us to put in a good title
 
 ```{r, eval=TRUE,echo=FALSE, fig.show='hold', out.height="50%", out.width="50%"}
 knitr::include_graphics("mtcars_animate.png")
