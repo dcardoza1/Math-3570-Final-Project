@@ -37,6 +37,71 @@ knitr::include_graphics("./images/data-science-communicate.png")
   - transition_reveal()  
   - transition_filter()  
   - transition_states()  
+  
+## transition_time() vs transition_reveal()
+- The plot on the left shows all the seasons in NBA history in which a player averaged at least 30 points per game
+- On the right the plot is animated using transition_time()
+
+```{r, eval = TRUE, echo=FALSE, fig.show='hold', out.height="50%", out.width="50%"}
+knitr::include_graphics("scorers_plotactual.png")
+knitr::include_graphics("scorers_time.gif")
+knitr::include_graphics("scorers_timecode.png")
+```
+
+- The animation does not communicate much since the points disappear very quickly
+
+## transition_time() vs transition_reveal()
+- Instead we can see what the plot looks like when using transition_reveal() instead of transition_time()
+- The animation on the left uses transition_time() and the animation on the right uses transition_reveal()
+
+```{r, eval=TRUE,echo=FALSE, fig.show='hold', out.height="50%", out.width="50%"}
+knitr::include_graphics("scorers_time.gif")
+knitr::include_graphics("scorers_nowake.gif")
+```
+- transition_reveal() does a much better job of communicating the data than transition_time()
+
+## shadow_wake()
+- The animation can still be improved though. Any player that occurs on the list multiple times is only on the plot once
+- Using the shadow_wake() function of gganimate we can add a wake to these players to show their scoring over their career
+
+```{r,eval=TRUE,echo=FALSE, fig.show='hold', out.height="50%", out.width="50%"}
+knitr::include_graphics("scorers_final.gif")
+knitr::include_graphics("scorers_anim2.png")
+```
+
+## shadow_wake()
+- Here are the animations side by side
+
+```{r, eval=TRUE,echo=FALSE, fig.show='hold', out.height="50%", out.width="50%"}
+knitr::include_graphics("scorers_nowake.gif")
+knitr::include_graphics("scorers_final.gif")
+```
+- Shadow_wake() communicates who the most productive players were over the course of their career instead of just a single season
+
+## transition_filter
+- The plot below shows all the cars in mtcars on a scatter plot with miles per gallon on the x-axis and horsepower on the y-axis
+- This plot does not communicate much aside from the relationship between horsepower and miles per gallon
+```{r, eval=TRUE,echo=FALSE, fig.show='hold', out.height="45%", out.width="45%"}
+knitr::include_graphics("cars_plot.png")
+knitr::include_graphics("cars_plotactual.png")
+```
+- Some simple animation could improve this plot
+
+## transition_filter()
+- Transition_filter() creates an animation that cycles through different filters of the data
+- We can use other variables from mtcars other than hp and mpg to set filters 
+
+```{r,eval=TRUE,echo=FALSE, fig.show='hold', out.height="50%", out.width="50%"}
+knitr::include_graphics("cars_data.png")
+knitr::include_graphics("cars_anim2.png")
+```
+
+## tranistion_filter()
+- Once the transition_filter() function is applied our static plot is transformed into a more informative animation
+```{r, eval=TRUE,echo=FALSE, fig.show='hold', out.height="50%", out.width="50%", fig.align='center'}
+knitr::include_graphics("cars_final.gif")
+```
+- The animation communicates trends within certain filters that would not be shown in the static plot
 
 ## Transition States
 - transition_states() is useful for non-time related transitions between data
