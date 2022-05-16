@@ -9,7 +9,7 @@ output: ioslides_presentation
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## What is `gganimate`? x
+## What is `gganimate`?
 - Extension package used with `ggplot2` 
   
 - Used to make animations using `ggplots`  
@@ -17,13 +17,14 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ```{r out.width = "30%",out.height = "30%",echo = FALSE, fig.align='center'}
 #Image of slide 1
-knitr::include_graphics("./images/gganimate_logo_small.png")
+knitr::include_graphics("./images/gganimate_logo.gif")
 ```
 
 ## Why use `gganimate`? {.build}
 - Offers simple and easy to implement functions for adding animations
 - Can improve visualization of change in data
-- Adds to presentation of data
+- Aids in effective data science communication
+
 ```{r out.width = "100%",out.height = "100%",echo = FALSE, fig.align='center'}
 #Image of slide 1
 knitr::include_graphics("./images/data-science-communicate.png")
@@ -51,7 +52,7 @@ knitr::include_graphics("./drugs_basic_code.png")
 
 ## `transition_time()` {.build}
 - `transition_time()` is useful for showing differences in variables over time
-- This is a very intuitive and interesting way to show time
+- This is a very intuitive and visually interesting way to show time
 - You can also make time a third variable in a two-dimensional graph
   
 Let's look at the example from the last slide
@@ -66,8 +67,9 @@ This is not very clear, since the trends are very hard to see
 Let's fix that!
 
 ## `shadow_trail()`
-- `shadow_trail` and will keep points behind the moving value, called a shadow
-- This allows the trends to be easier to see
+- `shadow_trail` will keep points visible behind the moving value, called a shadow
+- This allows the trends to be more easily seen
+
 
 ## `shadow_trail()` Example {.build}
 ```{r out.width = "47%", out.height = "50%",echo = FALSE, fig.align='center'}
