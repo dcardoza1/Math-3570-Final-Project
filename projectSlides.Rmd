@@ -185,7 +185,7 @@ knitr::include_graphics("./images/anim_bjt2.gif")
 knitr::include_graphics("./images/transitionstate_codechunk2.PNG")
 ```
 
-## `Animate and Labs` {.build}
+## `Customization` {.build}
 - Animate()
   - takes a gganim object and renders it into an animation
   - gives the ability to customize the animated plot
