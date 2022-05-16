@@ -220,7 +220,7 @@ knitr::include_graphics("mtcars_anim.gif")
 - allows for pretty and unique custom plots
 - relatively easy - not many lines of code
 
-```{r echo=FALSE,out.width="45%",out.height="45%",fig.align='center'}
+```{r echo=FALSE,out.width="30%",out.height="30%",fig.align='center'}
 knitr::include_graphics("./dino.gif")
 ```
 
