@@ -184,3 +184,44 @@ knitr::include_graphics("./images/transitionstate_codechunk1.PNG")
 knitr::include_graphics("./images/anim_bjt2.gif")
 knitr::include_graphics("./images/transitionstate_codechunk2.PNG")
 ```
+
+## `Animate and Labs` {.build}
+- Animate()
+  - takes a gganim object and renders it into an animation
+  - gives the ability to customize the animated plot
+  - takes arguments like fps, duration, ref_frame, start_pause, end_pause and rewind
+
+- Labs()
+  - Allows you to customize your animated plot with a title, x label and y label
+  
+Let's look at an example!
+
+## `Cars Data Set` {.build}
+- Here is a basic gganimate plot
+
+```{r, eval=TRUE,echo=FALSE, fig.show='hold', out.height="50%", out.width="50%"}
+knitr::include_graphics("mtcars.png")
+knitr::include_graphics("mtcars.gif")
+```
+
+## `With Animate and Labs` {.build}
+- Now lets utilize some extra functions we learned
+- Animate() allows us to change things about the animated plot like hight, width and fps
+- Labs() allows us to put in a good title
+
+```{r, eval=TRUE,echo=FALSE, fig.show='hold', out.height="50%", out.width="50%"}
+knitr::include_graphics("mtcars_animate.png")
+knitr::include_graphics("mtcars_anim.gif")
+```
+
+## Conclusion {.build}
+- gganimate unlocks the potential for countless designs and visualizations of different graphs
+- can be the difference between a successful presentation and an unsccessful one
+- allows for pretty and unique custom plots
+- relatively easy - not many lines of code
+
+```{r echo=FALSE,out.width="45%",out.height="45%",fig.align='center'}
+knitr::include_graphics("./dino.gif")
+```
+
+## Questions?
