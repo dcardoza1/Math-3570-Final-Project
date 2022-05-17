@@ -1,0 +1,102 @@
+---
+title: "Andrew's Code"
+author: "MATH 3570 Team 5"
+date: '2022-05-17'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Packages and Library entries
+``` {r message=FALSE}
+# Package names
+packages <- c("knitr", "gifski", "gganimate", "ggplot2", "graphics",
+              "grDevices", "dplyr", "magrittr", "readr", "ggthemes", 
+              "transformr", "tidyverse")
+
+# Install packages not yet installed
+installed_packages <- packages %in% rownames(installed.packages())
+if (any(installed_packages == FALSE)) {
+  install.packages(packages[!installed_packages])
+}
+
+# Packages loading
+invisible(lapply(packages, library, character.only = TRUE))
+
+library(gifski)
+library(datasets)
+library(gganimate)
+library(ggplot2)
+library(graphics)
+library(grDevices)
+library(dplyr)
+library(magrittr)
+library(readr)
+library(ggthemes)
+library(transformr)
+```
+
+## Transition States Code Chunks
+
+**Data access from bjtData.csv**
+```{r echo=TRUE}
+#Import data of BJT simulation
+bjt_df <- readr::read_csv("./bjtData.csv",show_col_types = FALSE)
+
+print(bjt_df)
+```
+
+
+**Normal ggplot of Data**
+``` {r}
+#Create ggplot of data
+bjt_plt <- bjt_df %>%
+    ggplot(mapping = aes(x = Vce_V, 
+                         y = Ic_A,
+                         color = factor(Ib_mA))) +
+    geom_line(size = 1.2) +
+    labs(x = "Voltage Vce (V)",
+         y = "Current Ic (A)",
+         color = "Base Current Ib (mA)",
+         title = "I-V Characteristics of BJT Component") +
+    scale_color_manual(breaks = c("3", "6", "9", "12", "15"),
+                       values = c("lightblue", "lightskyblue", "dodgerblue", "blue", "navy"))
+bjt_plt
+```
+
+**Apply transition_states() to create gif**
+```{r echo=TRUE}
+#Apply transition state animation to show change in output according to base current
+bjt_animplt <- bjt_plt +
+                     transition_states(Ib_mA,
+                                       transition_length = 0.25,
+                                       state_length = 1,
+                                       wrap = FALSE) +
+                     labs(subtitle = "Base Current Ib = {closest_state} mA")
+
+#Save animation as a gif
+anim_save("anim_bjt1.gif", bjt_animplt)
+```
+
+**Show the first animation (This section used only here in Code Doc)**
+```{r}
+bjt_animplt
+```
+  
+
+**Add shadow_mark() to improve animation**
+```{r echo=TRUE}
+#Apply shadow mark to leave data line mark at each transition
+bjt_animplt <- bjt_animplt + shadow_mark(alpha = 0.5)
+
+#Save animation as a gif
+anim_save("anim_bjt2.gif", bjt_animplt)
+```
+
+**Show the section animation (This section used only here in Code Doc)**
+```{r}
+bjt_animplt
+```
+
